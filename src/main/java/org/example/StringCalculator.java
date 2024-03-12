@@ -1,7 +1,5 @@
 package org.example;
 
-import com.sun.xml.internal.ws.util.StringUtils;
-
 import java.math.BigDecimal;
 
 public class StringCalculator {
@@ -18,18 +16,25 @@ public class StringCalculator {
             return "Number expected but EOF found.";
         }
 
+        if (number.startsWith("//")) {
+            String customSeparator = String.valueOf(number.charAt(2));
+            String numberSenzaCustomSeparator = number.substring(5, number.length());
+            return getSum(numberSenzaCustomSeparator, customSeparator);
+        }
+
         if (number.contains(SEPARATOREVIRGOLA_NEWLINES)) {
             return getErrorMessage(number, SEPARATORENEWLINES, SEPARATOREVIRGOLA_NEWLINES);
         }
         if (number.contains(SEPARATORENEWLINES_VIRGOLA)){
             return getErrorMessage(number, SEPARATOREVIRGOLA, SEPARATORENEWLINES_VIRGOLA);
         }
-        return getSum(number);
+        return getSum(number, SEPARATOREVIRGOLA);
     }
 
-    private static String getSum(String number) {
-        String inputSenzaNewLines = number.replace(SEPARATORENEWLINES, SEPARATOREVIRGOLA);
-        String[] arrayDiNumeri = inputSenzaNewLines.split(SEPARATOREVIRGOLA);
+    private static String getSum(String number, String customSeparator) {
+        String inputSenzaCustomSeparator = number.replace(customSeparator, SEPARATOREVIRGOLA);
+        String inputSenzaNewLinesECostomSeparator = inputSenzaCustomSeparator.replace(SEPARATORENEWLINES, SEPARATOREVIRGOLA);
+        String[] arrayDiNumeri = inputSenzaNewLinesECostomSeparator.split(SEPARATOREVIRGOLA);
 
         BigDecimal sum = BigDecimal.ZERO;
         for (String s : arrayDiNumeri)

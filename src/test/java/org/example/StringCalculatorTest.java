@@ -125,4 +125,14 @@ class StringCalculatorTest {
         assertThat(actual).isEqualTo("Number expected but EOF found.");
     }
 
+    @Test
+    void calcolaSomma_StringaConDelimitatoreCustom_Somma() {
+        //Arrange: costruendo la parte di test
+        StringCalculator stringCalculator = new StringCalculator();
+        //Act: azione che cosa sto testando
+        String actual = stringCalculator.add("//;\\n1;2");
+        //Assert: asserire l'output vedere se è quello atteso
+        assertThat(actual).isEqualTo("3");
+    }
+
 }
