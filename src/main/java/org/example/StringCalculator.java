@@ -1,10 +1,18 @@
 package org.example;
 
+import java.math.BigDecimal;
+import java.util.Arrays;
+
 public class StringCalculator {
-    public String add(String number){
+    public String add(String number) {
         if (number.isEmpty())
             return "0";
-        else
-            return number;
+        String[] temp = number.split(",");
+        BigDecimal sum = BigDecimal.ZERO;
+        for (String s : temp) {
+            sum = sum.add(new BigDecimal(s));
+        }
+
+        return sum.toString();
     }
 }

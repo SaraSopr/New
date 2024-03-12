@@ -38,4 +38,14 @@ class StringCalculatorTest {
         //Assert: asserire l'output vedere se è quello atteso
         assertThat(actual).isEqualTo("99");
     }
+
+    @Test
+    void quandoHoInInputArrayNumeriDecimaliRitornaSomma() {
+        //Arrange: costruendo la parte di test
+        StringCalculator stringCalculator = new StringCalculator();
+        //Act: azione che cosa sto testando
+        String actual = stringCalculator.add("1.1,2.2");
+        //Assert: asserire l'output vedere se è quello atteso
+        assertThat(actual).isEqualTo("3.3");
+    }
 }
