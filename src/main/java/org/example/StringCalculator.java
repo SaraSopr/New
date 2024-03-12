@@ -12,15 +12,16 @@ public class StringCalculator {
     public String add(String number) {
         if (number.isEmpty())
             return "0";
+        if (number.contains(SEPARATOREVIRGOLA_NEWLINES)) {
+            return getErrorMessage(number, SEPARATORENEWLINES, SEPARATOREVIRGOLA_NEWLINES);
+        }
+        if (number.contains(SEPARATORENEWLINES_VIRGOLA)){
+            return getErrorMessage(number, SEPARATOREVIRGOLA, SEPARATORENEWLINES_VIRGOLA);
+        }
         return getSum(number);
     }
 
     private static String getSum(String number) {
-        if (number.contains(SEPARATOREVIRGOLA_NEWLINES)) {
-            return getErrorMessage(number, SEPARATORENEWLINES, SEPARATOREVIRGOLA_NEWLINES);
-        } else if (number.contains(SEPARATORENEWLINES_VIRGOLA)){
-            return getErrorMessage(number, SEPARATOREVIRGOLA, SEPARATORENEWLINES_VIRGOLA);
-        }
         String inputSenzaNewLines = number.replace(SEPARATORENEWLINES, SEPARATOREVIRGOLA);
         String[] arrayDiNumeri = inputSenzaNewLines.split(SEPARATOREVIRGOLA);
 
