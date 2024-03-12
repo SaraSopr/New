@@ -17,9 +17,16 @@ public class StringCalculator {
         }
 
         if (number.startsWith("//")) {
-            String customSeparator = String.valueOf(number.charAt(2));
-            String numberSenzaCustomSeparator = number.substring(5, number.length());
-            return getSum(numberSenzaCustomSeparator, customSeparator);
+            int x = number.indexOf("\n");
+            String customSeparator = number.substring(2, x);
+
+
+
+            String numberSenzaCustomSeparator = number.substring(x+1, number.length());
+            if (number.contains(SEPARATOREVIRGOLA))
+                return getErrorMessage(customSeparator, numberSenzaCustomSeparator);
+            String[] arrayDiNumeri = map(numberSenzaCustomSeparator, customSeparator);
+            return getSum(arrayDiNumeri);
         }
 
         if (number.contains(SEPARATOREVIRGOLA_NEWLINES)) {
@@ -28,14 +35,24 @@ public class StringCalculator {
         if (number.contains(SEPARATORENEWLINES_VIRGOLA)){
             return getErrorMessage(number, SEPARATOREVIRGOLA, SEPARATORENEWLINES_VIRGOLA);
         }
-        return getSum(number, SEPARATOREVIRGOLA);
+
+        String[] arrayDiNumeri = map(number, SEPARATORENEWLINES);
+
+        return getSum(arrayDiNumeri);
     }
 
-    private static String getSum(String number, String customSeparator) {
-        String inputSenzaCustomSeparator = number.replace(customSeparator, SEPARATOREVIRGOLA);
-        String inputSenzaNewLinesECostomSeparator = inputSenzaCustomSeparator.replace(SEPARATORENEWLINES, SEPARATOREVIRGOLA);
-        String[] arrayDiNumeri = inputSenzaNewLinesECostomSeparator.split(SEPARATOREVIRGOLA);
+    private static String getErrorMessage(String customSeparator, String numberSenzaCustomSeparator) {
+        return "'" + customSeparator + "' expected but '" + SEPARATOREVIRGOLA + "' found at position " + numberSenzaCustomSeparator.indexOf(SEPARATOREVIRGOLA) + ".";
+    }
 
+    private static String[] map(String number, String customSeparator) {
+
+        String inputSenzaCustomSeparator = number.replace(customSeparator, SEPARATOREVIRGOLA);
+        String[] arrayDiNumeri = inputSenzaCustomSeparator.split(SEPARATOREVIRGOLA);
+        return arrayDiNumeri;
+    }
+
+    private static String getSum(String[] arrayDiNumeri) {
         BigDecimal sum = BigDecimal.ZERO;
         for (String s : arrayDiNumeri)
             sum = sum.add(new BigDecimal(s));

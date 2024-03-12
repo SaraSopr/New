@@ -126,13 +126,42 @@ class StringCalculatorTest {
     }
 
     @Test
-    void calcolaSomma_StringaConDelimitatoreCustom_Somma() {
+    void calcolaSomma_StringaConDelimitatoreCustomPuntoEVirgola_Somma() {
         //Arrange: costruendo la parte di test
         StringCalculator stringCalculator = new StringCalculator();
         //Act: azione che cosa sto testando
-        String actual = stringCalculator.add("//;\\n1;2");
+        String actual = stringCalculator.add("//;\n1;2");
         //Assert: asserire l'output vedere se è quello atteso
         assertThat(actual).isEqualTo("3");
+    }
+
+    @Test
+    void calcolaSomma_StringaConDelimitatoreCustomPipe_Somma() {
+        //Arrange: costruendo la parte di test
+        StringCalculator stringCalculator = new StringCalculator();
+        //Act: azione che cosa sto testando
+        String actual = stringCalculator.add("//|\n1|2|3");
+        //Assert: asserire l'output vedere se è quello atteso
+        assertThat(actual).isEqualTo("6");
+    }
+    @Test
+    void calcolaSomma_StringaConDelimitatoreCustomSep_Somma() {
+        //Arrange: costruendo la parte di test
+        StringCalculator stringCalculator = new StringCalculator();
+        //Act: azione che cosa sto testando
+        String actual = stringCalculator.add("//sep\n2sep3");
+        //Assert: asserire l'output vedere se è quello atteso
+        assertThat(actual).isEqualTo("5");
+    }
+
+    @Test
+    void calcolaSomma_StringaConDelimitatoreCustomEVirgola_Somma() {
+        //Arrange: costruendo la parte di test
+        StringCalculator stringCalculator = new StringCalculator();
+        //Act: azione che cosa sto testando
+        String actual = stringCalculator.add("//|\n1|2,3");
+        //Assert: asserire l'output vedere se è quello atteso
+        assertThat(actual).isEqualTo("'|' expected but ',' found at position 3.");
     }
 
 }
