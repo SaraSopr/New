@@ -4,6 +4,8 @@ package org.example;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.Random;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 
@@ -37,6 +39,23 @@ class StringCalculatorTest {
         String actual = stringCalculator.add("99");
         //Assert: asserire l'output vedere se è quello atteso
         assertThat(actual).isEqualTo("99");
+    }
+
+    @Test
+    void quandoHoInInputUnSoloNumeroRitornaIlNumero() {
+        //Arrange: costruendo la parte di test
+        StringCalculator stringCalculator = new StringCalculator();
+        Random rand = new Random();
+        for (int i = 0; i < 10; i++) {
+
+            String input = String.valueOf(rand.nextDouble());
+            //Act: azione che cosa sto testando
+            String actual = stringCalculator.add(input);
+            //Assert: asserire l'output vedere se è quello atteso
+            assertThat(actual).isEqualTo(input);
+
+        }
+
     }
 
     @Test
