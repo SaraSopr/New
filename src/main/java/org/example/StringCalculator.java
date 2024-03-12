@@ -58,10 +58,17 @@ public class StringCalculator {
 
     private static String getSum(String[] arrayDiNumeri) {
         BigDecimal sum = BigDecimal.ZERO;
+        String numeriNegativi = "";
         for (String s : arrayDiNumeri) {
             if (s.contains("-"))
-                return "Negative not allowed : " + s;
+                numeriNegativi += s +", ";
+
             sum = sum.add(new BigDecimal(s));
+
+        }
+        if (!numeriNegativi.isEmpty()) {
+            numeriNegativi = numeriNegativi.substring(0, numeriNegativi.length() - 2);
+            return "Negative not allowed : " + numeriNegativi;
         }
         return sum.toString();
     }

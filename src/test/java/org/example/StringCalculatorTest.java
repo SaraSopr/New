@@ -165,13 +165,23 @@ class StringCalculatorTest {
     }
 
     @Test
-    void calcolaSomma_StringaConNumeriNegativi_Somma() {
+    void calcolaSomma_StringaConNumeriNegativi_Errore() {
         //Arrange: costruendo la parte di test
         StringCalculator stringCalculator = new StringCalculator();
         //Act: azione che cosa sto testando
         String actual = stringCalculator.add("-1,2");
         //Assert: asserire l'output vedere se è quello atteso
         assertThat(actual).isEqualTo("Negative not allowed : -1");
+    }
+
+    @Test
+    void calcolaSomma_StringaConPiùNumeriNegativi_ListaErrori() {
+        //Arrange: costruendo la parte di test
+        StringCalculator stringCalculator = new StringCalculator();
+        //Act: azione che cosa sto testando
+        String actual = stringCalculator.add("2,-4,-5");
+        //Assert: asserire l'output vedere se è quello atteso
+        assertThat(actual).isEqualTo("Negative not allowed : -4, -5");
     }
 
 }
