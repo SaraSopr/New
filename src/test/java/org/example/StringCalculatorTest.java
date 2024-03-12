@@ -47,15 +47,12 @@ class StringCalculatorTest {
         StringCalculator stringCalculator = new StringCalculator();
         Random rand = new Random();
         for (int i = 0; i < 10; i++) {
-
             String input = String.valueOf(rand.nextDouble());
             //Act: azione che cosa sto testando
             String actual = stringCalculator.add(input);
             //Assert: asserire l'output vedere se è quello atteso
             assertThat(actual).isEqualTo(input);
-
         }
-
     }
 
     @Test
@@ -66,5 +63,15 @@ class StringCalculatorTest {
         String actual = stringCalculator.add("1.1,2.2");
         //Assert: asserire l'output vedere se è quello atteso
         assertThat(actual).isEqualTo("3.3");
+    }
+
+    @Test
+    void quandoHoInInput6numeriRitornaSomma() {
+        //Arrange: costruendo la parte di test
+        StringCalculator stringCalculator = new StringCalculator();
+        //Act: azione che cosa sto testando
+        String actual = stringCalculator.add("1,1.1,2.2,2,3.4,3");
+        //Assert: asserire l'output vedere se è quello atteso
+        assertThat(actual).isEqualTo("12.7");
     }
 }
