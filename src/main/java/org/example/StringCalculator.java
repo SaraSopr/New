@@ -11,6 +11,10 @@ public class StringCalculator {
     }
 
     private static String getSum(String number) {
+        if (number.contains(",\n")) {
+            int posizioneErrore = number.indexOf((",\n"))+1;
+            return "Number expected but '\n' found at position "+ posizioneErrore +".";
+        }
         String inputSenzaNewLines = number.replace("\n", ",");
         String[] arrayDiNumeri = inputSenzaNewLines.split(",");
 
