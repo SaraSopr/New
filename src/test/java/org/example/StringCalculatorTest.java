@@ -95,13 +95,13 @@ class StringCalculatorTest {
         assertThat(actual).isEqualTo("Number expected but '\n' found at position 6.");
     }
 
-    /*@Test
+    @Test
     void quandoHoInInputnumeriSeparatiDaNewLinesEVirgolaRitornaErrore() {
         //Arrange: costruendo la parte di test
         StringCalculator stringCalculator = new StringCalculator();
         //Act: azione che cosa sto testando
         String actual = stringCalculator.add("175.2\n,35");
         //Assert: asserire l'output vedere se è quello atteso
-        assertThat(actual).isEqualTo("Number expected but ',' found at position 8.");
-    }*/
+        assertThat(actual).isEqualTo("Number expected but ',' found at position 6.");
+    }
 }
