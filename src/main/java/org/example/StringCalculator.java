@@ -1,5 +1,7 @@
 package org.example;
 
+import com.sun.xml.internal.ws.util.StringUtils;
+
 import java.math.BigDecimal;
 
 public class StringCalculator {
@@ -12,6 +14,9 @@ public class StringCalculator {
     public String add(String number) {
         if (number.isEmpty())
             return "0";
+        if (SEPARATOREVIRGOLA.charAt(0) == number.charAt(number.length() - 1)){
+            return "Number expected but EOF found.";
+        }
         if (number.contains(SEPARATOREVIRGOLA_NEWLINES)) {
             return getErrorMessage(number, SEPARATORENEWLINES, SEPARATOREVIRGOLA_NEWLINES);
         }

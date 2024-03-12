@@ -104,4 +104,14 @@ class StringCalculatorTest {
         //Assert: asserire l'output vedere se è quello atteso
         assertThat(actual).isEqualTo("Number expected but ',' found at position 6.");
     }
+
+    @Test
+    void quandoHoUnSeparatoreAllaFineRitornaErrore() {
+        //Arrange: costruendo la parte di test
+        StringCalculator stringCalculator = new StringCalculator();
+        //Act: azione che cosa sto testando
+        String actual = stringCalculator.add("1,3,");
+        //Assert: asserire l'output vedere se è quello atteso
+        assertThat(actual).isEqualTo("Number expected but EOF found.");
+    }
 }
