@@ -106,7 +106,7 @@ class StringCalculatorTest {
     }
 
     @Test
-    void quandoHoUnSeparatoreAllaFineRitornaErrore() {
+    void quandoHoUnSeparatoreVirgolaAllaFineRitornaErrore() {
         //Arrange: costruendo la parte di test
         StringCalculator stringCalculator = new StringCalculator();
         //Act: azione che cosa sto testando
@@ -114,4 +114,15 @@ class StringCalculatorTest {
         //Assert: asserire l'output vedere se è quello atteso
         assertThat(actual).isEqualTo("Number expected but EOF found.");
     }
+
+    @Test
+    void quandoHoUnSeparatoreNewLinesAllaFineRitornaErrore() {
+        //Arrange: costruendo la parte di test
+        StringCalculator stringCalculator = new StringCalculator();
+        //Act: azione che cosa sto testando
+        String actual = stringCalculator.add("1,3\n");
+        //Assert: asserire l'output vedere se è quello atteso
+        assertThat(actual).isEqualTo("Number expected but EOF found.");
+    }
+
 }

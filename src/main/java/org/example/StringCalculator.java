@@ -14,9 +14,10 @@ public class StringCalculator {
     public String add(String number) {
         if (number.isEmpty())
             return "0";
-        if (SEPARATOREVIRGOLA.charAt(0) == number.charAt(number.length() - 1)){
+        if ((SEPARATOREVIRGOLA.charAt(0) == number.charAt(number.length() - 1)) || (SEPARATORENEWLINES.charAt(0) == number.charAt(number.length() - 1))){
             return "Number expected but EOF found.";
         }
+
         if (number.contains(SEPARATOREVIRGOLA_NEWLINES)) {
             return getErrorMessage(number, SEPARATORENEWLINES, SEPARATOREVIRGOLA_NEWLINES);
         }
