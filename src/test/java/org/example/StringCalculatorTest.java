@@ -74,4 +74,14 @@ class StringCalculatorTest {
         //Assert: asserire l'output vedere se è quello atteso
         assertThat(actual).isEqualTo("12.7");
     }
+
+    @Test
+    void quandoHoInInputnumeriSeparatiDaNewLinesRitornaSomma() {
+        //Arrange: costruendo la parte di test
+        StringCalculator stringCalculator = new StringCalculator();
+        //Act: azione che cosa sto testando
+        String actual = stringCalculator.add("1\n2,3");
+        //Assert: asserire l'output vedere se è quello atteso
+        assertThat(actual).isEqualTo("6");
+    }
 }

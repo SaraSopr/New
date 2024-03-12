@@ -11,9 +11,11 @@ public class StringCalculator {
     }
 
     private static String getSum(String number) {
-        String[] temp = number.split(",");
+        String inputSenzaNewLines = number.replace("\n", ",");
+        String[] arrayDiNumeri = inputSenzaNewLines.split(",");
+
         BigDecimal sum = BigDecimal.ZERO;
-        for (String s : temp)
+        for (String s : arrayDiNumeri)
             sum = sum.add(new BigDecimal(s));
         return sum.toString();
     }
